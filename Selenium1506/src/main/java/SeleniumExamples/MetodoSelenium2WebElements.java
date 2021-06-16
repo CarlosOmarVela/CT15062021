@@ -1,4 +1,4 @@
-package Selenium1506;
+package SeleniumExamples;
 
 import java.io.File;
 import java.nio.file.Paths;

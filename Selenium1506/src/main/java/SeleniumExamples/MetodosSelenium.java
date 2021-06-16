@@ -1,15 +1,14 @@
-package Selenium1506;
+package SeleniumExamples;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class FindElements {
+public class MetodosSelenium {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -32,20 +31,30 @@ public class FindElements {
 		
 		userName.sendKeys("Admin");
 		password.sendKeys("admin123");
-		Thread.sleep(1000);
 		btnLogin.click();
+		Thread.sleep(2000);
 		
-		//FindElements
-		List<WebElement> firstLevelMenu = driver.findElements(By.className("firstLevelMenu"));
-		System.out.println("Numero de elementos: " + firstLevelMenu.size());
-		String primerMenu = firstLevelMenu.get(0).getText();
-		System.out.println(primerMenu);
-		String segundoMenu = firstLevelMenu.get(1).getText();
-		System.out.println(segundoMenu);
+		//Explore Method
+		String title = driver.getTitle();
+		System.out.println("El título es: " + title);
 		
-		for(int i=0;i<firstLevelMenu.size();i++) {
-			System.out.println("Los menus son: " + firstLevelMenu.get(i).getText());
+		//Validate homepage
+		String urlDashboard = driver.getCurrentUrl();
+		System.out.println("Current URL is: " + urlDashboard);
+		boolean loginCorrect = urlDashboard.contains("/dashboard");//return boolean
+		if(loginCorrect) {
+			System.out.println("Login correcto");
+		}else {
+			System.out.println("Login incorrecto");
 		}
+		
+		//Navigation method
+		driver.navigate().back();
+		driver.navigate().forward();
+		driver.navigate().refresh();
+
+		driver.close(); //Close the current tab
+		driver.quit(); //Close all the windows
 	}
 
 }
